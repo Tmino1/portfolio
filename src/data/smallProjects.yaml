@@ -1,0 +1,15 @@
+- label: Settlers of Catan Agent
+  href: "#catan-agent"
+  summary: Combining RL and GNNs to better represent the spatial relations of the board.
+
+- label: LiDAR Terrain Study
+  href: "#lidar-terrain-study"
+  summary: Point-cloud experiments around terrain scans and depth cues.
+
+- label: Robot Model Viewer
+  href: "#robot-model-viewer"
+  summary: A viewer for inspecting imported robot models and kinematics.
+
+- label: Test
+  href: "#test"
+  summary: testing

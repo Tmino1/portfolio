@@ -15,9 +15,11 @@ const nameScan = sampleText(['TRAVIS MINOR'], {
 const DEPTH_LAYERS = 14;
 const EDGE_REPEAT = 3;
 const POINT_COUNT = nameScan.fill.length * DEPTH_LAYERS + nameScan.edge.length * EDGE_REPEAT;
-const TERRAIN_COLS = 150;
-const TERRAIN_ROWS = 92;
+const TERRAIN_COLS = 210;
+const TERRAIN_ROWS = 138;
 const TERRAIN_POINT_COUNT = TERRAIN_COLS * TERRAIN_ROWS;
+const TERRAIN_HALF_WIDTH = 10.2;
+const TERRAIN_HALF_DEPTH = 6.9;
 const NAME_MIN_Y = Math.min(...nameScan.fill.map((point) => point.y));
 const NAME_BASE_Y = terrainHeight(0, 0) + 2.08;
 
@@ -121,8 +123,8 @@ function buildTerrainPointCloud() {
       const u = col / (TERRAIN_COLS - 1);
       if (random() < 0.08) continue;
 
-      const x = THREE.MathUtils.lerp(-6.8, 6.8, u) + (random() - 0.5) * 0.035;
-      const z = THREE.MathUtils.lerp(-4.6, 4.6, v) + (random() - 0.5) * 0.035;
+      const x = THREE.MathUtils.lerp(-TERRAIN_HALF_WIDTH, TERRAIN_HALF_WIDTH, u) + (random() - 0.5) * 0.035;
+      const z = THREE.MathUtils.lerp(-TERRAIN_HALF_DEPTH, TERRAIN_HALF_DEPTH, v) + (random() - 0.5) * 0.035;
       const y = terrainHeight(x, z) + (random() - 0.5) * 0.025;
       const range = Math.hypot(x / 7, z / 4.8, (y + 2.05) / 1.2) / 1.45;
       const elevationBoost = THREE.MathUtils.clamp((y + 2.25) / 0.9, 0, 1) * 0.2;
@@ -160,22 +162,22 @@ export function IntroAnimation() {
     if (sceneRef.current) {
       sceneRef.current.rotation.y = THREE.MathUtils.lerp(
         sceneRef.current.rotation.y,
-        px * 0.08,
+        px * 0.13,
         damping,
       );
       sceneRef.current.rotation.x = THREE.MathUtils.lerp(
         sceneRef.current.rotation.x,
-        -py * 0.035,
+        -py * 0.055,
         damping,
       );
       sceneRef.current.position.x = THREE.MathUtils.lerp(
         sceneRef.current.position.x,
-        px * 0.1,
+        px * 0.18,
         damping,
       );
       sceneRef.current.position.y = THREE.MathUtils.lerp(
         sceneRef.current.position.y,
-        py * 0.05,
+        py * 0.085,
         damping,
       );
     }
